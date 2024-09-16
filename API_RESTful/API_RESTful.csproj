@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Transferencia_Datos\Transferencia_Datos.csproj" />
   </ItemGroup>
 
 </Project>
