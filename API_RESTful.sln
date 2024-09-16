@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_RESTful", "API_RESTful\API_RESTful.csproj", "{94914AD2-F175-4486-B7B5-9A3E972C0EF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_RESTful", "API_RESTful\API_RESTful.csproj", "{94914AD2-F175-4486-B7B5-9A3E972C0EF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transferencia_Datos", "Transferencia_Datos\Transferencia_Datos.csproj", "{ACB02237-19A6-491F-9575-F39D3CC72396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transferencia_Datos", "Transferencia_Datos\Transferencia_Datos.csproj", "{ACB02237-19A6-491F-9575-F39D3CC72396}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI_MVC", "UI_MVC\UI_MVC.csproj", "{A4A55A66-E64D-4FD4-80D5-B61E0888ED7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{ACB02237-19A6-491F-9575-F39D3CC72396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACB02237-19A6-491F-9575-F39D3CC72396}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACB02237-19A6-491F-9575-F39D3CC72396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4A55A66-E64D-4FD4-80D5-B61E0888ED7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A55A66-E64D-4FD4-80D5-B61E0888ED7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A55A66-E64D-4FD4-80D5-B61E0888ED7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4A55A66-E64D-4FD4-80D5-B61E0888ED7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
