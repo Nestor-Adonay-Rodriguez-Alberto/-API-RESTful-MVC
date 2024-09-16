@@ -33,6 +33,7 @@ namespace API_RESTful.Models
         [Required]
         [ForeignKey("Objeto_Rol")]
         public int IdRolEnEmpleado { get; set; }
+
         [JsonIgnore]
         public virtual Rol? Objeto_Rol { get; set; }
     }

@@ -15,7 +15,7 @@ namespace API_RESTful.Controllers
 
 
         // Constructor:
-        public RolController(MyDBcontext myDBcontext)
+        public RolController(MyDBcontext myDBcontext) 
         {
             _MyDBcontext= myDBcontext;
         }
@@ -121,6 +121,7 @@ namespace API_RESTful.Controllers
             }
 
         }
+
 
         // DELETE api/<RolController>/5
         [HttpDelete("{id}")]

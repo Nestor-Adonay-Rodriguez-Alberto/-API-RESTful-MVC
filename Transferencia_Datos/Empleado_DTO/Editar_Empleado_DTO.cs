@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static Transferencia_Datos.Rol_DTO.Registrados_Rol_DTO;
 
@@ -35,6 +36,7 @@ namespace Transferencia_Datos.Empleado_DTO
         [Required(ErrorMessage = "Ingrese El Rol Del Empleado.")]
         public int IdRolEnEmpleado { get; set; }
 
+        [JsonIgnore]
         public virtual Rol? Objeto_Rol { get; set; }
 
 
