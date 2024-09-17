@@ -1,0 +1,75 @@
+﻿@model Transferencia_Datos.Rol_DTO.Editar_Rol_DTO
+
+@{
+    ViewData["Title"] = "EDITAR";
+}
+
+<style>
+    /* Estilos Para Cuadro */
+    .form-container {
+        max-width: 450px;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        margin-top: 20px;
+    }
+
+        .form-container h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .form-container .row {
+            margin-bottom: 10px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+</style>
+
+<!-- CUERPO HTML -->
+<div class="form-container">
+    <h1>Editar</h1><br />
+
+    <h5>Datos Del Rol</h5>
+    <hr />
+
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="IdRol" />
+
+        <!-- FILA #1 -->
+        <div class="row">
+
+            <div class="form-group col-md-7">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <!-- BOTONES -->
+        <div class="row">
+
+            <div class="form-group">
+                <input type="submit" value="GUARDAR" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">CANCELAR</a>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

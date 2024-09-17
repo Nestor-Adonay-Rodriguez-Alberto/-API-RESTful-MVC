@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Transferencia_Datos.Rol_DTO;
 
 namespace UI_MVC.Controllers
@@ -16,7 +15,7 @@ namespace UI_MVC.Controllers
             _HttpClient = httpClientFactory.CreateClient("API_RESTful");
         }
 
-
+         
 
 
         // **************** ENDPOINTS QUE MANDARAN OBJETOS *****************
@@ -114,6 +113,7 @@ namespace UI_MVC.Controllers
 
             Editar_Rol_DTO Objeto_Editar = new Editar_Rol_DTO
             {
+                IdRol=Objeto_Obtenido.IdRol,
                 Nombre = Objeto_Obtenido.Nombre,
             };
 
@@ -124,7 +124,7 @@ namespace UI_MVC.Controllers
         // RECIBE EL OBJETO MODIFICADO Y LO MODIFICA EN DB:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Editar_Rol_DTO editar_Rol_DTO)
+        public async Task<IActionResult> Edit(Editar_Rol_DTO editar_Rol_DTO) 
         {
             // Solicitud PUT al Endpoint de la API:
             HttpResponseMessage Respuesta = await _HttpClient.PutAsJsonAsync("/api/Rol", editar_Rol_DTO);
@@ -167,7 +167,7 @@ namespace UI_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(ObtenerPorID_Rol_DTO obtenerPorID_Rol_DTO)
         {
-            // Solicitud GET al Endpoint de la API:
+            // Solicitud DELETE al Endpoint de la API:
             HttpResponseMessage Respuesta = await _HttpClient.DeleteAsync("/api/Rol/" + obtenerPorID_Rol_DTO.IdRol);
 
             // True=200-299

@@ -19,7 +19,7 @@ namespace API_RESTful.Controllers
         {
             _MyDBcontext= myDBcontext;
         }
-
+         
 
 
 
@@ -99,7 +99,7 @@ namespace API_RESTful.Controllers
 
 
         // BUSCA UN REGISTRO CON EL MISMO ID EN LA DB Y LO MODIFICA
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> Put([FromBody] Editar_Rol_DTO editar_Rol_DTO)
         {
             // Obtenemos de la DB:
