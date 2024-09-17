@@ -1,0 +1,119 @@
+﻿@model Transferencia_Datos.Empleado_DTO.Registrados_Empleado_DTO
+
+@{
+    ViewData["Title"] = "REGISTROS";
+}
+
+<style>
+    /* Estilos Del Cuadro */
+    .form-container {
+        max-width: 650px;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        margin-top: 20px;
+    }
+
+        /* Estilos Para h1 */
+        .form-container h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .form-container .row {
+            margin-bottom: 10px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+</style>
+
+
+<!-- CUERPO HTML -->
+<div class="form-container">
+    <h1>Empleados Registrados</h1><br />
+
+    <p>
+        <a asp-action="Create" class="btn btn-dark">Registrar Nuevo</a>
+    </p>
+
+    <div class="table-responsive"> 
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("NOMBRE")
+                    </th>
+                    <th>
+                        @Html.DisplayName("FECHA NACIMIENTO")
+                    </th>
+                    <th>
+                        @Html.DisplayName("SALARIO")
+                    </th>
+                    <th>
+                        @Html.DisplayName("EMAIL")
+                    </th>
+                    <th>
+                        @Html.DisplayName("ROL")
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Lista_Empleados)
+                {
+                    <tr>
+                        <!-- ATRIBUTOS -->
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @item.FechaNacimiento.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @item.Salaraio.ToString("C"); 
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objeto_Rol.Nombre)
+                        </td>
+
+                        <!-- BOTONES -->
+                        <td>
+                            <div class="d-flex flex-wrap">
+                                <div class="btn-group">
+                                    <a asp-action="Edit" asp-route-id="@item.IdEmpleado" class="btn btn-primary rounded">Editar</a>
+                                    <a asp-action="Details" asp-route-id="@item.IdEmpleado" class="btn btn-secondary rounded">Detalles</a>
+                                    <a asp-action="Delete_Vista" asp-route-id="@item.IdEmpleado" class="btn btn-danger rounded">Eliminar</a>
+                                </div>
+                                <style>
+                                    .btn-group {
+                                        display: flex;
+                                        gap: 5px;
+                                    }
+
+                                    .btn {
+                                        flex: 1;
+                                        border-radius: 5px;
+                                    }
+                                </style>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

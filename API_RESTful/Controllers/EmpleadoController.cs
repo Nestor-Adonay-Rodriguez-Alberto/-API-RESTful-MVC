@@ -10,8 +10,8 @@ namespace API_RESTful.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class EmpleadoController : ControllerBase
-    {
-        // Representa La DB:
+    { 
+        // Representa La DB: 
         private readonly MyDBcontext _MyDBcontext;
 
         // Constructor:
@@ -49,9 +49,15 @@ namespace API_RESTful.Controllers
                     FechaNacimiento = empleado.FechaNacimiento,
                     Email = empleado.Email,
                     IdRolEnEmpleado = empleado.IdRolEnEmpleado,
+                    Objeto_Rol = new Registrados_Rol_DTO.Rol
+                    {
+                        IdRol = empleado.Objeto_Rol.IdRol,
+                        Nombre = empleado.Objeto_Rol.Nombre,
+                    }
                 });
-            }
 
+            }
+            
             return Ok(Objeto_Empleado);
         }
 
@@ -75,7 +81,12 @@ namespace API_RESTful.Controllers
                     Salaraio = Objeto_Obtenido.Salaraio,
                     FechaNacimiento = Objeto_Obtenido.FechaNacimiento,
                     Email=Objeto_Obtenido.Email,
-                    IdRolEnEmpleado=Objeto_Obtenido.IdRolEnEmpleado
+                    IdRolEnEmpleado=Objeto_Obtenido.IdRolEnEmpleado,
+                    Objeto_Rol= new Registrados_Rol_DTO.Rol
+                    {
+                        IdRol=Objeto_Obtenido.Objeto_Rol.IdRol,
+                        Nombre=Objeto_Obtenido.Objeto_Rol.Nombre
+                    }
                 };
 
                 return Ok(Registro_Obtenido);

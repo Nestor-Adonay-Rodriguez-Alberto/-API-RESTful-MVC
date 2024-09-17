@@ -28,7 +28,6 @@ namespace Transferencia_Datos.Empleado_DTO
             // Referencia Tabla Empleado:  * RELACION *
             public int IdRolEnEmpleado { get; set; }
 
-            [JsonIgnore]
             public virtual Rol? Objeto_Rol { get; set; }
 
         }

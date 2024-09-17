@@ -1,0 +1,98 @@
+﻿@model Transferencia_Datos.Empleado_DTO.ObtenerPorID_Empleado_DTO
+
+@{
+    ViewData["Title"] = "DETALLE";
+}
+
+<style>
+    /* Estilos personalizados */
+    .form-container {
+        max-width: 600px;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        margin-top: 20px;
+    }
+
+        .form-container h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .form-container .row {
+            margin-bottom: 10px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+</style>
+
+<div class="form-container">
+    <h1>Detalles</h1>
+
+    <div>
+        <h5>Datos Del Empleado</h5>
+        <hr />
+
+        <!-- Fila #1 -->
+        <div class="row">
+
+            <div class="col-sm-4">
+                <dt>NOMBRE:</dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+            </div>
+
+            <div class="col-sm-5">
+                <dt>FECHA NACIMIENTO:</dt>
+                <dd class="col-sm-10">
+                    @Model.FechaNacimiento.ToString("dd/MM/yyyy")
+                </dd>
+            </div>
+
+            <div class="col-sm-3">
+                <dt>SUELDO:</dt>
+                <dd class="col-sm-10">
+                    @Model.Salaraio.ToString("C");
+                </dd>
+            </div>
+
+        </div>
+
+        <!-- Fila #2 -->
+        <div class="row">
+
+            <div class="col-sm-4">
+                <dt>ROL:</dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Objeto_Rol.Nombre)
+                </dd>
+            </div>
+
+            <div class="col-sm-5">
+                <dt>EMAIL:</dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- BOTONES -->
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.IdEmpleado" class="btn btn-primary">EDITAR</a> |
+        <a asp-action="Index" class="btn btn-secondary">CANCELAR</a>
+    </div>
+
+</div>

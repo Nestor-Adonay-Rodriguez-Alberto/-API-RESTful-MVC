@@ -16,7 +16,7 @@ namespace UI_MVC.Controllers
         {
             _HttpClient = httpClientFactory.CreateClient("API_RESTful");
         }
-
+         
 
 
 
@@ -38,7 +38,6 @@ namespace UI_MVC.Controllers
                 // Deserializamos el Json:
                 Lista_Empleados = await JSON_Obtenidos.Content.ReadFromJsonAsync<Registrados_Empleado_DTO>();
             }
-
 
             return View(Lista_Empleados);
         }
@@ -147,7 +146,7 @@ namespace UI_MVC.Controllers
                 Email=Objeto_Obtenido.Email,
                 IdRolEnEmpleado=Objeto_Obtenido.IdRolEnEmpleado
             };
-
+             
             // Para Seleccionar Roles:
             Registrados_Rol_DTO Objeto_Rol = await Lista_Roles();
             ViewData["Lista_Roles"] = new SelectList(Objeto_Rol.Lista_Roles, "IdRol", "Nombre",Objeto_Obtenido.IdRolEnEmpleado);
