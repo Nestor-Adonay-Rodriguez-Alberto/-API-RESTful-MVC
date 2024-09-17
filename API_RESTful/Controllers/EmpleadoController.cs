@@ -115,6 +115,7 @@ namespace API_RESTful.Controllers
 
 
 
+
         // *******  ENPOINTS QUE RECIBIRAN OBJETOS Y MODIFICARAN LA DB  *******
         // ********************************************************************
 
@@ -140,7 +141,7 @@ namespace API_RESTful.Controllers
 
 
         // BUSCA UN REGISTRO CON EL MISMO ID EN LA DB Y LO MODIFICA
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> Put([FromBody] Editar_Empleado_DTO editar_Empleado_DTO)
         {
             // Obtenemos de la DB:
@@ -188,6 +189,7 @@ namespace API_RESTful.Controllers
             }
 
         }
+
 
     }
 }
