@@ -41,7 +41,7 @@
     <h5>Datos Del Empleado</h5>
     <hr />
 
-    <form asp-action="Edit">
+    <form asp-action="Edit" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="IdEmpleado" />
 
@@ -68,7 +68,7 @@
 
         </div>
 
-        <!-- FILA #1 -->
+        <!-- FILA #2 -->
         <div class="row">
 
             <div class="form-group col-md-6">
@@ -84,12 +84,43 @@
 
         </div>
 
+        <!-- FILA #3 -->
+        <div class="row">
+
+            <div class="form-group col-md-6">
+                <label class="control-label">FOTOGRAFIA:</label>
+                <input type="file" id="ImagenEmpleado" onchange="MostrarImagenEmpleado()" accept="image/*" asp-for="Fotografia" class="form-control" />
+                <div class="col-sm-10">
+                    @{
+                        // Es La Imagen En Base64
+                        string Imagen_Mostar = "";
+
+                        if (Model.Fotografia != null && Model.Fotografia.Length > 0)
+                        {
+                            string Cadena_Imagen = Convert.ToBase64String(Model.Fotografia);
+                            Imagen_Mostar = "data:image/jpeg;base64," + Cadena_Imagen;
+                        }
+
+                        if (Imagen_Mostar.Trim().Length > 0)
+                        {
+                            <img id="VistaImagenEmpleado" src="@Imagen_Mostar" style="max-width:100px; max-height:100px" />
+                        }
+                        else
+                        {
+                            <img src="~/img/defecto.jpg" style="max-width:100px; max-height:100px" />
+                        }
+                    }
+                </div>
+
+            </div>
+
+        </div>
 
         <!-- BOTONES -->
         <div class="row">
 
             <div class="form-group">
-                <input type="submit" value="GUARDAR" class="btn btn-primary" />
+                <input type="submit" value="GUARDAR" class="btn btn-primary" /> |
                 <a asp-action="Index" class="btn btn-secondary">CANCELAR</a>
             </div>
 
@@ -100,5 +131,31 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <!-- Vista Previa De Imagen -->
+    <script>
+
+        function MostrarImagenEmpleado() {
+
+            var Imagen_Obtenida = document.getElementById('ImagenEmpleado');
+
+            if (Imagen_Obtenida.files && Imagen_Obtenida.files[0]) {
+                // Lector De Archivos:
+                var Lector = new FileReader();
+
+                // Guardamos la imagen en un evento
+                Lector.onload = function (e) {
+                    document.getElementById('VistaImagenEmpleado').src = e.target.result;
+                }
+
+                //Convertimos el archivo en Base64:
+                Lector.readAsDataURL(Imagen_Obtenida.files[0]);
+            }
+        }
+
+    </script>
+
 }

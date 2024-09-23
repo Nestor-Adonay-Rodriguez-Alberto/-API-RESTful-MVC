@@ -22,6 +22,8 @@ namespace Transferencia_Datos.Empleado_DTO
 
         public string Email { get; set; }
 
+        public byte[]? Fotografia { get; set; }
+
 
         // Referencia Tabla Empleado:  * RELACION *
         public int IdRolEnEmpleado { get; set; }

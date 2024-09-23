@@ -63,6 +63,9 @@
                     <th>
                         @Html.DisplayName("ROL")
                     </th>
+                    <th>
+                        @Html.DisplayName("FOTOGRAFIA")
+                    </th>
 
                     <th></th>
                 </tr>
@@ -87,6 +90,28 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Objeto_Rol.Nombre)
                         </td>
+                        <td>
+                            @{
+                                // Es La Imagen En Base64
+                                string Imagen_Mostar = "";
+
+                                if (item.Fotografia != null && item.Fotografia.Length > 0)
+                                {
+                                    string Cadena_Imagen = Convert.ToBase64String(item.Fotografia);
+                                    Imagen_Mostar = "data:image/jpeg;base64," + Cadena_Imagen;
+                                }
+
+                                if (Imagen_Mostar.Trim().Length > 0)
+                                {
+                                    <img src="@Imagen_Mostar" style="max-width:100px; max-height:100px" />
+                                }
+                                else
+                                {
+                                    <img src="~/img/defecto.jpg" style="max-width:100px; max-height:100px" />
+                                }
+                            }
+                        </td>
+
 
                         <!-- BOTONES -->
                         <td>

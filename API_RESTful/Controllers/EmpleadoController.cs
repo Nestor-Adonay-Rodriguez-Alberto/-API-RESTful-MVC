@@ -10,7 +10,7 @@ namespace API_RESTful.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class EmpleadoController : ControllerBase
-    { 
+    {
         // Representa La DB: 
         private readonly MyDBcontext _MyDBcontext;
 
@@ -32,7 +32,7 @@ namespace API_RESTful.Controllers
         {
             // Obtenemos Todos Los Registros:
             List<Empleado> Registros_Empleados = await _MyDBcontext.Empleados
-                .Include(x=> x.Objeto_Rol)
+                .Include(x => x.Objeto_Rol)
                 .ToListAsync();
 
             // La Lista de este Objeto Retornaremos:
@@ -48,6 +48,7 @@ namespace API_RESTful.Controllers
                     Salaraio = empleado.Salaraio,
                     FechaNacimiento = empleado.FechaNacimiento,
                     Email = empleado.Email,
+                    Fotografia = empleado.Fotografia,
                     IdRolEnEmpleado = empleado.IdRolEnEmpleado,
                     Objeto_Rol = new Registrados_Rol_DTO.Rol
                     {
@@ -57,7 +58,7 @@ namespace API_RESTful.Controllers
                 });
 
             }
-            
+
             return Ok(Objeto_Empleado);
         }
 
@@ -80,12 +81,13 @@ namespace API_RESTful.Controllers
                     Nombre = Objeto_Obtenido.Nombre,
                     Salaraio = Objeto_Obtenido.Salaraio,
                     FechaNacimiento = Objeto_Obtenido.FechaNacimiento,
-                    Email=Objeto_Obtenido.Email,
-                    IdRolEnEmpleado=Objeto_Obtenido.IdRolEnEmpleado,
-                    Objeto_Rol= new Registrados_Rol_DTO.Rol
+                    Email = Objeto_Obtenido.Email,
+                    Fotografia = Objeto_Obtenido.Fotografia,
+                    IdRolEnEmpleado = Objeto_Obtenido.IdRolEnEmpleado,
+                    Objeto_Rol = new Registrados_Rol_DTO.Rol
                     {
-                        IdRol=Objeto_Obtenido.Objeto_Rol.IdRol,
-                        Nombre=Objeto_Obtenido.Objeto_Rol.Nombre
+                        IdRol = Objeto_Obtenido.Objeto_Rol.IdRol,
+                        Nombre = Objeto_Obtenido.Objeto_Rol.Nombre
                     }
                 };
 
@@ -138,10 +140,11 @@ namespace API_RESTful.Controllers
             Empleado empleado = new Empleado
             {
                 Nombre = crear_Empleado_DTO.Nombre,
-                Salaraio=crear_Empleado_DTO.Salaraio,
-                FechaNacimiento=crear_Empleado_DTO.FechaNacimiento,
-                Email=crear_Empleado_DTO.Email,
-                IdRolEnEmpleado=crear_Empleado_DTO.IdRolEnEmpleado
+                Salaraio = crear_Empleado_DTO.Salaraio,
+                FechaNacimiento = crear_Empleado_DTO.FechaNacimiento,
+                Email = crear_Empleado_DTO.Email,
+                Fotografia = crear_Empleado_DTO.Fotografia,
+                IdRolEnEmpleado = crear_Empleado_DTO.IdRolEnEmpleado
             };
 
             _MyDBcontext.Add(empleado);
@@ -164,6 +167,7 @@ namespace API_RESTful.Controllers
                 Objeto_Obtenido.Salaraio = editar_Empleado_DTO.Salaraio;
                 Objeto_Obtenido.FechaNacimiento = editar_Empleado_DTO.FechaNacimiento;
                 Objeto_Obtenido.Email = editar_Empleado_DTO.Email;
+                Objeto_Obtenido.Fotografia = editar_Empleado_DTO.Fotografia;
                 Objeto_Obtenido.IdRolEnEmpleado = editar_Empleado_DTO.IdRolEnEmpleado;
 
                 // Actualizamos:

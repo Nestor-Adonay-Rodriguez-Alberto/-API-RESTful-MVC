@@ -103,8 +103,19 @@ namespace UI_MVC.Controllers
         // RECIBE UN OBJETO Y LO GUARDA EN LA DB:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Crear_Empleado_DTO crear_Empleado_DTO)
+        public async Task<IActionResult> Create(Crear_Empleado_DTO crear_Empleado_DTO, IFormFile Fotografia)
         {
+            // Convirtiendo el archivo a Arreglo De Bytes:
+            if (Fotografia != null && Fotografia.Length > 0)
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    Fotografia.CopyTo(memoryStream);
+
+                    crear_Empleado_DTO.Fotografia = memoryStream.ToArray();
+                }
+            }
+
             // Solicitud POST al Endpoint de la API:
             HttpResponseMessage Respuesta = await _HttpClient.PostAsJsonAsync("/api/Empleado", crear_Empleado_DTO);
 
@@ -144,12 +155,13 @@ namespace UI_MVC.Controllers
                 Salaraio=Objeto_Obtenido.Salaraio,
                 FechaNacimiento=Objeto_Obtenido.FechaNacimiento,
                 Email=Objeto_Obtenido.Email,
+                Fotografia=Objeto_Obtenido.Fotografia,
                 IdRolEnEmpleado=Objeto_Obtenido.IdRolEnEmpleado
             };
              
             // Para Seleccionar Roles:
             Registrados_Rol_DTO Objeto_Rol = await Lista_Roles();
-            ViewData["Lista_Roles"] = new SelectList(Objeto_Rol.Lista_Roles, "IdRol", "Nombre",Objeto_Obtenido.IdRolEnEmpleado);
+            ViewData["Lista_Roles"] = new SelectList(Objeto_Rol.Lista_Roles, "IdRol", "Nombre",Objeto_Editar.IdRolEnEmpleado);
 
             return View(Objeto_Editar);
         }
@@ -158,8 +170,36 @@ namespace UI_MVC.Controllers
         // RECIBE EL OBJETO MODIFICADO Y LO MODIFICA EN DB:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Editar_Empleado_DTO editar_Empleado_DTO)
+        public async Task<IActionResult> Edit(Editar_Empleado_DTO editar_Empleado_DTO, IFormFile Fotografia)
         {
+            // Solicitud GET al Endpoint de la API:
+            HttpResponseMessage JSON_Obtenido = await _HttpClient.GetAsync("/api/Empleado/" + editar_Empleado_DTO.IdEmpleado);
+
+            // OBJETO:
+            ObtenerPorID_Empleado_DTO Objeto_Obtenido = new ObtenerPorID_Empleado_DTO();
+
+            // True=200-299
+            if (JSON_Obtenido.IsSuccessStatusCode)
+            {
+                // Deserializamos el Json:
+                Objeto_Obtenido = await JSON_Obtenido.Content.ReadFromJsonAsync<ObtenerPorID_Empleado_DTO>();
+            }
+
+            // Convirtiendo el archivo a Arreglo De Bytes:
+            if (Fotografia != null && Fotografia.Length > 0)
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    Fotografia.CopyTo(memoryStream);
+
+                    editar_Empleado_DTO.Fotografia = memoryStream.ToArray();
+                }
+            }
+            else
+            {
+                editar_Empleado_DTO.Fotografia = Objeto_Obtenido.Fotografia;
+            }
+
             // Solicitud PUT al Endpoint de la API:
             HttpResponseMessage Respuesta = await _HttpClient.PutAsJsonAsync("/api/Empleado", editar_Empleado_DTO);
 

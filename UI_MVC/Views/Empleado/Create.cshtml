@@ -41,7 +41,7 @@
     <h5>Datos Del Empleado</h5>
     <hr />
 
-    <form asp-action="Create">
+    <form asp-action="Create" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
@@ -68,7 +68,7 @@
 
         </div>
 
-        <!-- FILA #1 -->
+        <!-- FILA #2 -->
         <div class="row">
 
             <div class="form-group col-md-6">
@@ -84,6 +84,18 @@
 
         </div>
 
+        <!-- FILA #3 -->
+        <div class="row">
+
+            <div class="form-group col-md-6">
+                <label class="control-label">FOTOGRAFIA:</label>
+                <input type="file" id="ImagenEmpleado" onchange="MostrarImagenEmpleado()" accept="image/*" asp-for="Fotografia" class="form-control" />
+                <div class="col-sm-10">
+                    <img id="VistaImagenEmpleado" src="~/img/defecto.jpg" style="max-height:100px;max-width:100px" />
+                </div>
+            </div>
+
+        </div>
 
         <!-- BOTONES -->
         <div class="row">
@@ -101,4 +113,28 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <!-- Vista Previa De Imagen -->
+    <script>
+
+        function MostrarImagenEmpleado() {
+
+            var Imagen_Obtenida = document.getElementById('ImagenEmpleado');
+
+            if (Imagen_Obtenida.files && Imagen_Obtenida.files[0]) {
+                // Lector De Archivos:
+                var Lector = new FileReader();
+
+                // Guardamos la imagen en un evento
+                Lector.onload = function (e) {
+                    document.getElementById('VistaImagenEmpleado').src = e.target.result;
+                }
+
+                //Convertimos el archivo en Base64:
+                Lector.readAsDataURL(Imagen_Obtenida.files[0]);
+            }
+        }
+
+    </script>
+
 }

@@ -29,6 +29,9 @@ namespace API_RESTful.Models
         public string Email { get; set; }
 
 
+        public byte[]? Fotografia { get; set; }
+
+
         // Referencia Tabla Empleado:  * RELACION *
         [Required]
         [ForeignKey("Objeto_Rol")]

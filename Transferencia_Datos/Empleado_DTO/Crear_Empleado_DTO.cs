@@ -30,6 +30,9 @@ namespace Transferencia_Datos.Empleado_DTO
         public string Email { get; set; }
 
 
+        public byte[]? Fotografia { get; set; }
+
+
         // Referencia Tabla Empleado:  * RELACION *
         [Required(ErrorMessage = "Ingrese El Rol Del Empleado.")]
         public int IdRolEnEmpleado { get; set; }
